@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-3">
+  <div class="container-fluid">
+    <!-- Logo + Brand -->
+    <a class="navbar-brand d-flex align-items-center" href="/listings">
+      <img src="/logo-final.png" alt="Logo" width="40" height="40" class="me-2" />
+      <span style="color: #fc5c65; font-family: 'Yellowtail', cursive; font-weight: 600; font-size: 2rem;">WanderLust</span>
+    </a>
+
+    <!-- Toggle button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Centered Search + Right Links -->
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <!-- Left: Empty spacer -->
+      <div class="d-none d-lg-block"></div>
+
+      <!-- Center: Search -->
+      <form class="d-flex mx-auto" role="search" action="/listings/search" method="GET" style="width: 400px;">
+  <input class="form-control me-2 rounded-pill" type="search" name="country" placeholder="Search By Country" aria-label="Search"  value="<%= typeof country !== 'undefined' ? country : '' %>">
+  <button class="btn btn-danger d-flex align-items-center rounded-pill" type="submit">
+    <i class="fa-solid fa-magnifying-glass me-2"></i> Search
+  </button>
+</form>
+
+      <!-- Right: Links -->
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
+  <% if (!currUser) { %>
+    <!-- If user is not logged in -->
+    <li class="nav-item mx-2"><a class="nav-link" href="/signup">SignUp</a></li>
+    <li class="nav-item mx-2"><a class="nav-link" href="/login">LogIn</a></li>
+  <% } else { %>
+    <!-- If user is logged in -->
+    <li class="nav-item mx-2"><a class="nav-link" href="/listings/new">Add New Listing</a></li>
+    <li class="nav-item mx-2"><a class="nav-link" href="/logout">LogOut</a></li>
+  <% } %>
+</ul>
+    </div>
+  </div>
+</nav>

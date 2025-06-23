@@ -1,0 +1,46 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+<body>
+    <% if (category) { %>
+        <br>
+        <h3 style="color:#3a3737">Showing results for <%= category %></h3>
+    <% } %>
+
+    <% if (listings.length === 0) { %>
+        <p>No listings found in this category.</p>
+    <% } else { %>
+        <div class="container mt-4">
+            <!-- Responsive Bootstrap grid layout -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <% listings.forEach(list => { %>
+                    <div class="col">
+                        <!-- Entire card wrapped inside the link -->
+                        <a href="/listings/<%= list._id %>" style="text-decoration: none; color: inherit;">
+                            <div class="card h-100 shadow-sm">
+                                <!-- Clickable image -->
+                                <img src="<%= list.image.url %>" 
+                                     class="card-img-top" 
+                                     alt="<%= list.title %>"
+                                     style="height: 20rem; object-fit: cover;">
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= list.title %></h5>
+                                    <div class="card-text mb-2">
+                                        <% if (list.price != null) { %>
+                                            <span class="fw-bold">₹<%= list.price.toLocaleString("en-IN") %></span>
+                                        <% } else { %>
+                                            <em class="text-muted">Price not available</em>
+                                        <% } %>
+                                    </div>
+                                    <p class="card-text text-muted">
+                                        <small><%= list.country %></small>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    <% } %>
+</body>
