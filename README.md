@@ -34,5 +34,4 @@ Wanderlust is a full-featured rental listing web application where users can exp
 
 ---
 
-## 🏗️ Project Structure
 
